@@ -5,8 +5,11 @@
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
-    "server": "nodemon server.js"
-  },
+    "server": "nodemon server.js",
+    "test":
+      "export NODE_ENV=test || SET \"NODE_ENV=test\" && mocha tests/**/*.test.js",
+      "test-watch": "nodemon --exec npm test"
+    },
   "author": "Naor Zruk",
   "license": "MIT",
   "dependencies": {
@@ -20,5 +23,9 @@
     "passport-jwt": "^4.0.0",
     "validator": "^10.2.0"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "expect": "^1.20.2",
+    "mocha": "^5.2.0",
+    "supertest": "^3.1.0"
+  }
 }
