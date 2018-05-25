@@ -14,11 +14,6 @@ const User = require("../../models/User");
 const { standardFields } = require("../../models/Profile");
 const { socialFields } = require("../../models/Profile");
 
-// @route   GET api/profile/test
-// @desc    Tests post route
-// @access  Public
-router.get("/test", (req, res) => res.json({ msg: "Profile Works" }));
-
 // @route   GET api/profile
 // @desc    Get current user profile
 // @access  Private
@@ -29,6 +24,7 @@ router.get(
     const errors = {};
 
     Profile.findOne({ user: req.user.id })
+      .populate("user", ["user", "avatar"])
       .then(profile => {
         if (!profile) {
           errors.noprofile = "There is no profile for this user";

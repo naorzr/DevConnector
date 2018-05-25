@@ -8,6 +8,7 @@ module.exports = function validateProfileInput(data) {
   data.handle = !isEmpty(data.handle) ? data.handle : "";
   data.status = !isEmpty(data.status) ? data.status : "";
   data.skills = !isEmpty(data.skills) ? data.skills : "";
+  data.website = !isEmpty(data.website) ? data.website : "";
 
   if (!Validator.isLength(data.handle, { min: 2, max: 40 })) {
     errors.handle = "Handle needs to be between 2 and 4 characters";
@@ -23,6 +24,10 @@ module.exports = function validateProfileInput(data) {
 
   if (Validator.isEmpty(data.skills)) {
     errors.skills = "Skills field is required";
+  }
+
+  if (!Validator.isEmpty(data.website) && !Validator.isURL(data.website)) {
+    errors.website = "Invalid URL";
   }
 
   socialFields.forEach(field => {

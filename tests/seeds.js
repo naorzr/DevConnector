@@ -1,8 +1,16 @@
-const User = require ('../models/User');
+const User = require("../models/User");
 
-const depopulateUsers = (done) => {
-    User.remove({}).then(() => done());
-}
+const populateUsers = done => {
+  User.remove({}).then(() => {
+    const user = new User({
+      name: "example1",
+      email: "example1@gmail.com",
+      password: "123456",
+      password2: "123456"
+    });
+    user.save();
+    done();
+  });
+};
 
-
-module.exports = {depopulateUsers};
+module.exports = { populateUsers };
