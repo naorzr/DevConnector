@@ -67,6 +67,7 @@ router.post("/register", (req, res) => {
 // @access  Public
 router.post("/login", (req, res) => {
   const email = req.body.email;
+
   const password = req.body.password;
 
   const { errors, isValid } = validateLoginInput(req.body);
