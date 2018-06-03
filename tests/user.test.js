@@ -124,4 +124,17 @@ describe("POST /login", () => {
         done();
       });
   });
+
+  it("Shouldn't login with invalid email", done => {
+    request(app)
+      .post("/api/users/login")
+      .send({ email: "invalid@email", password: seedUser.password })
+      .expect(400)
+      .end((err, res) => {
+        if (err) {
+          console.log(err);
+        }
+        done();
+      });
+  });
 });

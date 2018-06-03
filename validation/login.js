@@ -13,6 +13,10 @@ module.exports = function validateLoginInput(data) {
     }
   });
 
+  if (typeof data.password === "number") {
+    // Needs to convert to a string for comperssion
+    data.password += "";
+  }
   if (!Validator.isLength(data.password, { min: 6, max: 30 })) {
     errors.password = "Password must be between 6 and 30 characters";
   }
